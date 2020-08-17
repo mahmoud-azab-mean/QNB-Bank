@@ -1,0 +1,97 @@
+{
+    "customersData" : [
+        {
+            "country"    : "Egypt",
+            "customers" :  [
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 1",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image1.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 2",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image2.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 3",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image3.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 4",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image4.jpg",
+                    "block": false
+                }
+                
+            ]
+        },
+        {
+            "country"    : "Saudi Arabia",
+            "customers" :  [
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 1",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image5.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 2",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image6.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 3",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image7.jpg",
+                    "block": false
+                },
+                {
+                    "custNo": "101010",
+                    "custName" : "Mohamed 4",
+                    "title": "Mr",
+                    "email"  : "m@m.yahoo.com" ,
+                    "phone": "011232323233",
+                    "gender": "male",
+                    "custImg": "../images/image8.jpg",
+                    "block": false
+                }
+                
+            ]
+        }
+    ]
+    
+}

@@ -1,0 +1,14 @@
+var posting  = $.post(url, {country: country})
+    // when posting finish in need to put the result in message
+    posting.done((res) => {
+        console.log(res)
+        if(res.success){
+            $("#msg").empty().append(res.msg)
+            refreshData()
+        }
+        else 
+            $("#msg").empty().append("No data Save Please try again !!!")
+    })
+
+    ------------------------------------------------------------------------
+    

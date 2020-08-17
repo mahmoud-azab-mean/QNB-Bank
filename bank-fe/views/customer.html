@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Customers</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">QNB Bank</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Countries
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#" onclick = "setAddCountryModal()"  data-toggle="modal" data-target="#countryModal">Add new Country</a>
+                              <a class="dropdown-item" href="#">Manage Countries</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Statistics</a>
+                            </div>
+                          </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Customers
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick = "setAddCustomerModal()" data-toggle="modal" data-target="#customerModal">Add new Customer</a>
+                        <a class="dropdown-item" href="#">Manage Customers</a>
+                        <div class="dropdown-divider"></div> 
+                        <a class="dropdown-item" href="#">Statistics</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+        </nav>
+    <button>clicked</button>
+    <!-- Container -->
+    <div class="container">
+        <h1>List of our bank customers</h1>
+        <div data-bind="foreach: customersData">
+            <div  class="country flex-nowrap">
+                <div class="alert alert-primary">
+                    <h3 style="float: left;">Country : <span data-bind="text: country"></span></h3>
+                    <div class="text-right">
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#countryModal" data-bind="click: setEditCountryModal(_id,country)">Edit</a>
+                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"  data-bind="click: setRemoveModal('country',_id)">Delete</a>
+                    </div>
+            </div>
+
+                <div class="card-columns" data-bind="foreach: customers">
+                    <div class="card customer border-danger">
+                        <img width="600px" class="card-img-top" data-bind="attr: {src: custImg}"/>
+                        <div class="card-body">
+                            <span class="badg badge-secondary" data-bind="text: title"></span>
+    
+                            <h5 class="card-title"  data-bind="text: custName"></h5>
+                            <p class="card-text" >
+                              <button type="button" class="btn btn-primary">Call<span class="badge badge-light"><a data-bind="atrr: {href: 'tel:'+ phone}, text: phone"></a></span></button>
+                              <button type="button" class="btn btn-primary">Mail<span class="badge badge-light"><a data-bind="atrr: {href: 'mailto:'+ email}, text: email"></a></span></button>
+    
+                            </p>
+                          </div>
+                          <div class="card-footer">
+                              <a href="#" class="btn btn-primary">Details</a>
+                              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#customerModal" data-bind="click: setEditCustomerModal($parent._id, _id, custNo, custName, title, phone, gender, email)">Edit</a>
+                              <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"  data-bind="click: setRemoveModal('customer',custNo, $parent._id)">Delete</a>
+                             
+                          </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+      
+      <!--  Country Modal -->
+      <div class="modal fade" id="countryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="countryModalTitle">Add New Country</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="countryForm" method="POST" action="countryCustomers/countryCreate/">
+            <div class="modal-body">
+                <input id="formOperationType" type="text" value="add"/>  
+                <input id="countryId" type="text" value="edit"/>  
+                <label for="country">CountryName</label>
+                <input id="country" type="text" class="form-control" placeholder="Enter"/>
+                <label for="notes">Notes</label>
+                <input id="country" type="text" class="form-control" placeholder="Enter"/>
+                <small id="msg" class="form-text text-muted">...</small>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input id="btnSave" type="submit" class="btn btn-primary" value="Save changes"/>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+    
+         <!-- Add  Customer Modal -->
+      <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="customerModalTitle">Add New Country</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="customerForm" method="POST" enctype="multipart/form-data" >
+                    <div class="modal-body">
+                        <input id="cf_formOperationType" type="hidden" value="add"/>  
+                        <input id="cf_countryId" type="hidden" />
+                        <input id="cf_customerId" type="hidden" />  
+
+                        <label for="country">Select Country </label>
+                        <select id="customerCountry" data-bind="foreach: customersData" class="form-control">
+                            <option data-bind="text: country, value: _id"></option>
+                        </select>
+                        <label for="title">Title</label>
+                        <select id="title"  class="form-control">
+                                <option value="1">Mr</option>
+                                <option value="2">Ms</option>
+                                <option value="3">Dr</option>
+                                <option value="4">Eng</option>
+                        </select>
+                        <label for="custNo">Customer Number</label>
+                        <input id="custNo" type="text" class="form-control" placeholder="Enter"/>
+                        <label for="custName">Customer Name</label>
+                        <input id="custName" type="text" class="form-control" placeholder="Enter"/>
+                        <label for="phone">phone</label>
+                        <input id="phone" type="text" class="form-control" placeholder="Enter"/>
+                        <label for="gender">Gender</label>
+                        <input id="gender" type="radio" value="M" checked class="" placeholder="Enter"/>Male
+                        <input id="gender" type="radio" value="F" class="" placeholder="Enter"/>Female
+                        <br>
+                        <label for="email">Email Name</label>
+                        <input id="email" type="email" class="form-control" placeholder="Enter"/>
+                        <label for="imageFile">Photo</label>
+                        <input id="imageFile" name="imageFile" type="file" class="form-control" placeholder="Enter"/>
+                        <small id="custMsg" class="form-text text-muted">...</small>
+        
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <input id="btnSave" type="submit" class="btn btn-primary" value="Save changes"/>
+                    </div>
+                </form>
+                  </div>
+                </div>
+      </div>
+    
+            <!-- Remove Modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModalTitle">Remove Record   </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form id="removeEntry" method="POST" action="countryCustomers/???">
+                        <div class="modal-body">
+                          Do y really want delete this record
+                          <input id="deleteType" type="hidden">
+                          <input id="deleteId" type="hidden">
+                          <input id="parentId" type="hidden">
+                        </div>
+                        <hr>
+                        <small id="removeMsg" class="form-text text-muted"></small>
+            
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <input type="submit" class="btn btn-danger" value="Yes Remove">
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+      </div>
+
+          
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/knockout.js"></script>
+    <script type="text/javascript" src="../viewModels/customerViewModel.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/popper.min.js"></script>
+    <script type="text/javascript"src="../assets/js/script.js"></script>
+</body>
+</html>
